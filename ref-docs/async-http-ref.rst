@@ -225,11 +225,13 @@ post()
 Make a POST request which will not block execution and therefore can run longer than the execution timeout.
 
 **Signature:**
-    ``void post(String callbackMethod = null, Map params, Map data = null)``
+    ``void post(String callbackMethod = null, String tlsVersion, Map params, Map data = null)``
 
 **Parameters:**
 
     `String`_ callbackMethod - the name of the method to call with the response. If null the response will be discarded after the request is made.
+
+    `String`_ ``tlsVersion`` - Version of the TLS. Optional parameter. Default value is ``"TLSv1.0"``. Allowable values are ``"TLSv1.0"`` or ``"TLSv1.2"``.
 
     `Map`_ params - parameters for the request. Supported keys below:
 
@@ -259,7 +261,7 @@ Make a POST request which will not block execution and therefore can run longer 
             path: '/some/path',
             body: [key1: 'value 1']
         ]
-        asynchttp_v1.post(processResponse, params)
+        asynchttp_v1.post(processResponse, tlsVersion: "TLSv1.2", params)
     }
 
     def processResponse(response, data) { ... }

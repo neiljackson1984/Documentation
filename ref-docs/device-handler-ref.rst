@@ -397,7 +397,7 @@ The mobile user interface of a composite parent device is built typically by com
 **Example:**
 
 .. code-block:: groovy
-    
+
     metadata {
         definition (name: "Simulated Refrigerator", namespace: "smartthings/testing", author: "SmartThings") {
             capability "Contact Sensor"
@@ -891,7 +891,7 @@ Executes an HTTP POST request and passes control to the specified closure. The c
 If the response content type is JSON, the response data will automatically be parsed into a data structure.
 
 **Signature:**
-    ``void httpPost(String uri, String body, Closure closure)``
+    ``void httpPost(String uri, String tlsVersion, String body, Closure closure)``
 
     ``void httpPost(Map params, Closure closure)``
 
@@ -900,12 +900,15 @@ If the response content type is JSON, the response data will automatically be pa
 
     `String`_ ``body`` - The body of the request
 
+    `String`_ ``tlsVersion`` - Version of the TLS. Optional parameter. Default value is ``"TLSv1.0"``. Allowable values are ``"TLSv1.0"`` or ``"TLSv1.2"``.
+
     `Map`_ ``params`` - A map of parameters for configuring the request. The valid parameters are:
 
     =================== ==============
     Parameter           Description
     =================== ==============
     uri                 Either a URI or URL of of the endpoint to make a request from.
+	tlsVersion			Version of the TLS. Optional parameter. Default value is ``"TLS1.0"``. Allowable values are ``"TLSv1.0"`` or ``"TLSv1.2"``.
     path                Request path that is merged with the URI.
     query               Map of URL query parameters.
     headers             Map of HTTP headers.
@@ -922,7 +925,7 @@ If the response content type is JSON, the response data will automatically be pa
 .. code-block:: groovy
 
     try {
-        httpPost("http://mysite.com/api/call", "id=XXX&value=YYY") { resp ->
+        httpPost(uri: "https://httpbin.org/post", tlsVersion: "TLSv1.2") { resp ->
             log.debug "response data: ${resp.data}"
             log.debug "response contentType: ${resp.contentType}"
         }
