@@ -28,7 +28,7 @@ There are two types of Simulator declarations to define in a Device Handler - "s
 Status
 ------
 
-The "status" declarations specify actions that result in a person physically actuating the device.
+The "status" declarations specify actions that are the result of a person physically actuating the device.
 In the case of the Z-Wave switch, for example, we have:
 
 .. code-block:: groovy
